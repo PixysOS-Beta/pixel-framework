@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Constraints;
-import com.android.systemui.R;
+import com.android.systemui.res.R;
 import com.android.systemui.plugins.BcSmartspaceDataPlugin;
 import com.google.android.systemui.smartspace.logging.BcSmartspaceCardLoggingInfo;
 
@@ -83,8 +83,11 @@ public class BcSmartspaceCardWeatherForecast extends BcSmartspaceCardSecondary {
     public final boolean setSmartspaceActions(SmartspaceTarget smartspaceTarget, BcSmartspaceDataPlugin.SmartspaceEventNotifier smartspaceEventNotifier, BcSmartspaceCardLoggingInfo bcSmartspaceCardLoggingInfo) {
         boolean isWeatherEnabled = Settings.Secure.getIntForUser(getContext().getContentResolver(),
                     Settings.Secure.LOCK_SCREEN_WEATHER_ENABLED,
-                    1, UserHandle.USER_CURRENT) != 0;
-        if (!isWeatherEnabled) {
+                    0, UserHandle.USER_CURRENT) != 0;
+        boolean isOmniWeatherEnabled = Settings.System.getIntForUser(getContext().getContentResolver(),
+                    Settings.System.LOCKSCREEN_WEATHER_ENABLED,
+                    0, UserHandle.USER_CURRENT) != 0;
+        if (!isWeatherEnabled || isOmniWeatherEnabled) {
             return false;
         }
         Bundle extras;

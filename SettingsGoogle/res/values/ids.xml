@@ -2,10 +2,6 @@
 <resources>
     <item name="agree_to_participate" type="id" />
     <item name="animation" type="id" />
-    <item name="assist_gesture_illustration_animation" type="id" />
-    <item name="assist_gesture_sensitivity_seekbar" type="id" />
-    <item name="assist_gesture_training_check" type="id" />
-    <item name="assist_gesture_training_illustration" type="id" />
     <item name="browser_actions_header_text" type="id" />
     <item name="browser_actions_menu_item_icon" type="id" />
     <item name="browser_actions_menu_item_text" type="id" />

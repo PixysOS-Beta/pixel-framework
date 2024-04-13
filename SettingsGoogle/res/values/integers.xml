@@ -2,8 +2,6 @@
 <resources>
     <integer name="app_bypass_bottom_sheet_notification_weight">500</integer>
     <integer name="config_battery_extra_tip_value">90</integer>
-    <integer name="gesture_assist_sensitivity_default">4</integer>
-    <integer name="gesture_assist_sensitivity_max">8</integer>
     <integer name="suwTransitionDuration">300</integer>
     <integer name="abc_config_activityDefaultDur">220</integer>
     <integer name="abc_config_activityShortDur">150</integer>
