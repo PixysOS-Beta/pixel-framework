@@ -11,11 +11,12 @@ android_library {
         "android.frameworks.stats-V1-java",
         "vendor-pixelatoms-java",
         "SettingsGoogle-lib",
+        "google-battery",
     ],
     resource_dirs: [
         "res",
+        "res-aosp",
     ],
-    manifest: ":Settings_manifest",
 }
 
 android_app {
@@ -40,17 +41,11 @@ android_app {
     overrides: [
         "Settings",
     ],
-    manifest: ":Settings_manifest",
-    additional_manifests: ["AndroidManifest.xml"],
+    manifest: "AndroidManifest.xml",
 }
 
 java_import  {
     name: "SettingsGoogle-lib",
     sdk_version: "current",
     jars: ["libs/SettingsGoogle-lib.jar"],
-}
-
-filegroup {
-    name: "SettingsGoogle_manifest",
-    srcs: ["AndroidManifest.xml"],
 }
