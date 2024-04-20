@@ -36,8 +36,7 @@ import vendor.google.google_battery.ChargingStage;
 import vendor.google.google_battery.IGoogleBattery;
 
 public class AdaptiveChargingManager {
-
-    private static final boolean DEBUG = Log.isLoggable("AdaptiveChargingManager", 3);
+    private static final boolean DEBUG = false;
     private static final String TAG = "AdaptiveChargingManager";
 
     private Context mContext;
@@ -137,8 +136,8 @@ public class AdaptiveChargingManager {
 
     public void queryStatus(final AdaptiveChargingStatusReceiver adaptiveChargingStatusReceiver) {
         IBinder.DeathRecipient deathRecipient = new IBinder.DeathRecipient() {
-           @Override
-            public final void binderDied() {
+            @Override
+            public void binderDied() {
                 if (DEBUG) {
                     Log.d("AdaptiveChargingManager", "serviceDied");
                 }
@@ -146,20 +145,25 @@ public class AdaptiveChargingManager {
             }
         };
         IGoogleBattery initHalInterface = null;
-        if(mHasSystemFeature) {
-            initHalInterface = GoogleBatteryManager.initHalInterface(deathRecipient);
+        if (mHasSystemFeature) {
+            try {
+                initHalInterface = GoogleBatteryManager.initHalInterface(deathRecipient);
+            } catch (SecurityException e) {
+                Log.e("AdaptiveChargingManager", "Failed to initialize HAL interface: SecurityException", e);
+                return;
+            }
         }
         if (initHalInterface == null) {
-            adaptiveChargingStatusReceiver.onDestroyInterface();
             return;
         }
         try {
             ChargingStage stage = initHalInterface.getChargingStageAndDeadline();
             adaptiveChargingStatusReceiver.onReceiveStatus(stage.deadlineSecs, stage.stage);
         } catch (RemoteException | ParcelFormatException e) {
-            Log.e("AdaptiveChargingManager", "Failed to get Adaptive Charging status: ", e);
+            Log.e("AdaptiveChargingManager", "Failed to get Adaptive Charging status", e);
+        } finally {
+            GoogleBatteryManager.destroyHalInterface(initHalInterface, deathRecipient);
+            adaptiveChargingStatusReceiver.onDestroyInterface();
         }
-        GoogleBatteryManager.destroyHalInterface(initHalInterface, deathRecipient);
-        adaptiveChargingStatusReceiver.onDestroyInterface();
     }
 }

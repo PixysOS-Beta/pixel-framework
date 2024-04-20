@@ -24,7 +24,7 @@
         <item name="android:maxLines">1</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:drawablePadding">@dimen/enhanced_smartspace_icon_margin</item>
-        <item name="android:fontFamily">google-sans</item>
+        <item name="android:fontFamily">google-sans-text</item>
         <item name="android:lineHeight">24.0sp</item>
     </style>
     <style name="LockscreenDotStyle" parent="@style/DotStyle">
