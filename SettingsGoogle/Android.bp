@@ -13,6 +13,7 @@ android_library {
     ],
     resource_dirs: [
         "res",
+        "res-aosp",
     ],
     manifest: ":Settings_manifest",
 }
