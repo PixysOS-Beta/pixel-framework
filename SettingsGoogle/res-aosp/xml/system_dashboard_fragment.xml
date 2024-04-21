@@ -47,6 +47,15 @@
         android:title="@string/trackpad_settings"
         settings:controller="com.android.settings.inputmethod.TrackpadSettingsController" />
 
+
+    <com.google.android.settings.aware.AwareSettingsDialogPreference 
+	android:icon="@drawable/ic_aware" 
+        android:key="aware_settings"
+	android:order="-230" 
+	android:title="@string/aware_settings_title" 
+        settings:controller="com.google.android.settings.aware.AwareSettingsPreferenceController"
+        settings:searchable="false" />
+
     <Preference
         android:fragment="com.android.settings.gestures.GestureSettings"
         android:icon="@drawable/ic_settings_gestures"
@@ -54,6 +63,14 @@
         android:order="-250"
         android:title="@string/gesture_preference_title"
         settings:controller="com.android.settings.gestures.GesturesSettingPreferenceController" />
+
+    <Preference
+            android:key="icon_manager"
+        android:title="@string/statusbar_tuner_title"
+        android:order="-255"
+        android:icon="@drawable/ic_systemui_tuner_statusbaritems" >
+            <intent android:action="com.android.settings.action.STATUS_BAR_TUNER" />
+        </Preference>
 
     <Preference
         android:fragment="com.android.settings.datetime.DateTimeSettings"

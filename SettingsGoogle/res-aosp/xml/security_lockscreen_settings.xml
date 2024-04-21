@@ -44,6 +44,12 @@
             settings:controller="com.android.settings.display.ControlsPrivacyPreferenceController" />
 
         <SwitchPreferenceCompat
+            android:key="lock_screen_show_qr_scanner"
+            android:title="@string/lockscreen_privacy_qr_code_scanner_setting_toggle"
+            android:summary="@string/lockscreen_privacy_qr_code_scanner_summary"
+            settings:controller="com.android.settings.display.QRCodeScannerPreferenceController" />
+
+        <SwitchPreferenceCompat
             android:key="lockscreen_trivial_controls_switch"
             android:summary="@string/lockscreen_trivial_controls_summary"
             android:title="@string/lockscreen_trivial_controls_setting_toggle"
@@ -89,6 +95,28 @@
             settings:controller="com.android.settings.gestures.TapScreenGesturePreferenceController"
             settings:searchable="false" />
 
+   <PreferenceCategory 
+	    android:title="@string/aware_category_gesture"
+	    android:key="aware_gestures" 
+	    settings:controller="com.google.android.settings.aware.AwareGesturesCategoryPreferenceController"
+	    settings:keywords="TYPE_DYNAMIC_REFERENCE">
+
+        <com.android.settingslib.RestrictedPreference 
+            android:title="@string/aware_display_settings_title" 
+            android:key="aware_presence" 
+            android:fragment="com.google.android.settings.aware.AwareDisplaySettings" 
+            settings:controller="com.google.android.settings.aware.AwareDisplayPreferenceController" 
+            settings:keywords="@string/keywords_aware_settings" 
+            settings:userRestriction="no_ambient_display" />
+         <com.google.android.settings.aware.WakeScreenGestureDialogPreference 
+            android:title="@string/ambient_display_wake_screen_title" 
+            android:key="ambient_display_wake_screen" 
+            settings:controller="com.google.android.settings.aware.WakeScreenDialogGesturePreferenceController" 
+            settings:keywords="TYPE_DYNAMIC_REFERENCE" 
+	    settings:searchable="false" />
+
+     </PreferenceCategory>
+
         <Preference
             android:fragment="com.android.settings.gestures.DoubleTapScreenSettings"
             android:key="ambient_display_double_tap"
@@ -108,6 +136,26 @@
             android:summary="@string/doze_summary"
             android:title="@string/doze_title"
             settings:controller="com.android.settings.display.AmbientDisplayNotificationsPreferenceController" />
+
+       <Preference
+            android:key="gesture_screen_off_udfps_input_summary"
+            android:title="@string/ambient_display_screen_off_udfps_title"
+            android:fragment="com.android.settings.gestures.ScreenOffUdfpsSettings"
+            settings:searchable="false"
+            settings:controller="com.android.settings.gestures.ScreenOffUdfpsPreferenceController" />
+
+        <!-- Horizon Light Settings -->
+        <Preference
+            android:key="pulse_ambient_light_settings"
+            android:title="@string/pulse_ambient_light_title"
+            android:summary="@string/pulse_ambient_light_summary"
+            android:fragment="com.android.settings.display.PulseAmbientLightSettings" />
+
+       <Preference
+          android:key="always_on_display_schedule"
+          android:icon="@drawable/ic_always_on_display_schedule"
+          android:title="@string/always_on_display_schedule_title"
+          android:fragment="com.android.settings.AODSchedule" />
 
     </PreferenceCategory>
 

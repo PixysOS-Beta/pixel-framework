@@ -53,6 +53,11 @@
             settings:textEnd="@string/high_label"
             settings:textStart="@string/low_label" />
 
+        <SwitchPreferenceCompat
+            android:key="immersive_navigation"
+            android:title="@string/immersive_navigation_title"
+            android:summary="@string/immersive_navigation_summary" />
+
     </PreferenceCategory>
 
     <com.android.settingslib.widget.FooterPreference
