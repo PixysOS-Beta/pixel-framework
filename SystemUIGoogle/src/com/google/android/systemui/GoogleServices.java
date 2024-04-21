@@ -8,6 +8,8 @@ import com.android.systemui.qs.QsEventLogger;
 import com.android.systemui.VendorServices;
 import com.android.systemui.statusbar.phone.CentralSurfaces;
 
+import com.google.android.systemui.columbus.ColumbusContext;
+import com.google.android.systemui.columbus.ColumbusServiceWrapper;
 import com.google.android.systemui.ambientmusic.AmbientIndicationContainer;
 import com.google.android.systemui.ambientmusic.AmbientIndicationService;
 
@@ -23,19 +25,24 @@ public class GoogleServices extends VendorServices {
     private final CentralSurfaces mCentralSurfaces;
     private final AlarmManager mAlarmManager;
     private final QsEventLogger mUiEventLogger;
+    private final Lazy<ColumbusServiceWrapper> mColumbusServiceLazy;
 
     @Inject
-    public GoogleServices(Context context, AlarmManager alarmManager, CentralSurfaces centralSurfaces, QsEventLogger uiEventLogger) {
+    public GoogleServices(Context context, AlarmManager alarmManager, CentralSurfaces centralSurfaces, QsEventLogger uiEventLogger, Lazy<ColumbusServiceWrapper> columbusServiceWrapperLazy) {
         super();
         mContext = context;
         mServices = new ArrayList<>();
         mAlarmManager = alarmManager;
         mCentralSurfaces = centralSurfaces;
         mUiEventLogger = uiEventLogger;
+        mColumbusServiceLazy = columbusServiceWrapperLazy;
     }
 
     @Override
     public void start() {
+       if (new ColumbusContext(mContext).isAvailable()) {
+            addService(mColumbusServiceLazy.get());
+        }
         AmbientIndicationContainer ambientIndicationContainer = (AmbientIndicationContainer) mCentralSurfaces.getNotificationShadeWindowView().findViewById(R.id.ambient_indication_container);
         ambientIndicationContainer.initializeView(mContext, mCentralSurfaces, ambientIndicationContainer);
         addService(new AmbientIndicationService(mContext, ambientIndicationContainer, mAlarmManager));

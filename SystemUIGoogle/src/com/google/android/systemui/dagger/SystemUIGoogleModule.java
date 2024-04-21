@@ -86,6 +86,7 @@ import com.android.systemui.statusbar.phone.HeadsUpModule;
 import com.android.systemui.wallpapers.dagger.WallpaperModule;
 import com.android.systemui.statusbar.KeyboardShortcutsModule;
 
+import com.google.android.systemui.columbus.dagger.ColumbusModule;
 import com.google.android.systemui.NotificationLockscreenUserManagerGoogle;
 import com.google.android.systemui.controls.GoogleControlsTileResourceConfigurationImpl;
 import com.google.android.systemui.power.dagger.PowerModuleGoogle;
@@ -129,6 +130,7 @@ import dagger.Lazy;
         StartCentralSurfacesGoogleModule.class,
         SmartspaceGoogleModule.class,
         ReverseChargingModule.class,
+        ColumbusModule.class,
         SystemUIGooglePolicyModule.class
 })
 
