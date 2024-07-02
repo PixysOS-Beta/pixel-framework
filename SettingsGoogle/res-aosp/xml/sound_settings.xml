@@ -62,21 +62,6 @@
         settings:controller="com.android.settings.notification.AlarmVolumePreferenceController"
         settings:userRestriction="no_adjust_volume" />
 
-    <!-- Increasing ring -->
-    <com.android.settings.custom.preference.SystemSettingSwitchPreference
-        android:key="increasing_ring"
-        android:title="@string/increasing_ring_volume_option_title"
-        android:order="-136"
-        settings:controller="com.android.settings.notification.IncreasingRingPreferenceController" />
-
-    <!-- Increasing ring volume -->
-    <com.android.settings.notification.IncreasingRingVolumePreference
-        android:key="increasing_ring_volume"
-        android:icon="@drawable/ring_notif_increasing"
-        android:dependency="increasing_ring"
-        android:order="-135"
-        settings:controller="com.android.settings.notification.IncreasingRingVolumePreferenceController" />
-
     <Preference
         android:dialogTitle="@string/media_output_title"
         android:key="media_output"
@@ -133,6 +118,22 @@
         settings:controller="com.android.settings.accessibility.VibrationPreferenceController"
         settings:keywords="@string/keywords_vibration" />
 
+    <ListPreference
+        android:key="vibration_pattern"
+        android:title="@string/vibration_pattern_title"
+        android:order="-85"
+        android:entries="@array/vibration_pattern_entries"
+        android:entryValues="@array/vibration_pattern_values"/>
+
+    <!-- Custom ringtone vibration pattern preference -->
+    <Preference
+        android:key="custom_vibration_pattern"
+        android:title="@string/custom_vibration_pattern_title"
+        android:summary="@string/custom_vibration_pattern_summary"
+        android:order="-83"
+        android:fragment="com.android.settings.sound.CustomVibrationPreferenceFragment"
+        android:visibility="gone"/>
+
     <com.android.settingslib.PrimarySwitchPreference
         android:fragment="com.android.settings.gestures.PreventRingingGestureSettings"
         android:key="gesture_prevent_ringing_sound"
@@ -147,6 +148,23 @@
         android:ringtoneType="notification"
         android:summary="@string/summary_placeholder"
         android:title="@string/notification_ringtone_title" />
+
+
+    <ListPreference
+        android:key="notification_vibration_pattern"
+        android:title="@string/notification_vibration_pattern_title"
+        android:entries="@array/notification_vibration_pattern_entries"
+        android:entryValues="@array/vibration_pattern_values"
+        android:order="-67" />
+
+    <!-- Custom notification vibration pattern preference -->
+    <Preference
+        android:key="custom_notification_vibration_pattern"
+        android:title="@string/custom_vibration_pattern_title"
+        android:summary="@string/custom_vibration_pattern_summary"
+        android:fragment="com.android.settings.sound.CustomNotificationVibrationPreferenceFragment"
+        android:visibility="gone"
+        android:order="-63" />
 
     <com.android.settings.DefaultRingtonePreference
         android:dialogTitle="@string/alarm_ringtone_title"
@@ -201,10 +219,22 @@
         android:order="-50"
         android:title="@string/dial_pad_tones_title" />
 
+   <!-- In-call notifications -->
+    <SwitchPreferenceCompat
+        android:key="in_call_notifications"
+        android:title="@string/in_call_notifications_title"
+        android:order="-47"/>
+
     <SwitchPreferenceCompat
         android:key="screen_locking_sounds"
         android:order="-45"
         android:title="@string/screen_locking_sounds_title" />
+
+  <!-- Screenshot sound -->
+    <SwitchPreferenceCompat
+        android:key="screenshot_shutter_sound"
+        android:title="@string/screenshot_shutter_sound_title"
+        android:order="-43"/>
 
     <SwitchPreferenceCompat
         android:key="charging_sounds"
@@ -221,16 +251,30 @@
         android:order="-30"
         android:title="@string/touch_sounds_title" />
 
-    <!-- Screenshot sound -->
-    <com.android.settings.custom.preference.SystemSettingSwitchPreference
-        android:key="screenshot_shutter_sound"
-        android:title="@string/screenshot_shutter_sound_title"
-        android:defaultValue="true"
-        android:order="-28"/>
-
     <SwitchPreferenceCompat
         android:key="vibrate_icon"
         android:order="-999"
         android:title="@string/vibrate_icon_title" />
+
+   <!-- Incall vibration options -->
+    <PreferenceCategory
+        android:key="incall_vib_options"
+        android:title="@string/incall_vibration_category" >
+
+        <com.pixys.support.preference.SystemSettingSwitchPreference
+            android:key="vibrate_on_connect"
+            android:title="@string/incall_vibrate_connect_title"
+            android:defaultValue="false" />
+
+        <com.pixys.support.preference.SystemSettingSwitchPreference
+            android:key="vibrate_on_callwaiting"
+            android:title="@string/incall_vibrate_call_wait_title"
+            android:defaultValue="false" />
+
+        <com.pixys.support.preference.SystemSettingSwitchPreference
+            android:key="vibrate_on_disconnect"
+            android:title="@string/incall_vibrate_disconnect_title"
+            android:defaultValue="false" />
+    </PreferenceCategory
 
 </PreferenceScreen>

@@ -4,6 +4,36 @@
     xmlns:settings="http://schemas.android.com/apk/res-auto"
     android:title="@string/gesture_preference_title">
 
+<PreferenceCategory 
+    android:title="@string/aware_category_gesture" 
+    android:key="aware_gestures" 
+    settings:controller="com.google.android.settings.aware.AwareGesturesCategoryPreferenceController" 
+    settings:keywords="TYPE_DYNAMIC_REFERENCE">
+
+    <com.google.android.settings.aware.TapGestureDialogPreference 
+        android:title="@string/gesture_tap_title" 
+        android:key="gesture_tap_summary" 
+        settings:controller="com.google.android.settings.aware.TapDialogGesturePreferenceController" 
+        settings:searchable="false" />
+
+    <com.google.android.settings.aware.SkipGestureDialogPreference 
+        android:title="@string/gesture_skip_title"
+        android:key="gesture_skip_summary" 
+        settings:controller="com.google.android.settings.aware.SkipDialogGesturePreferenceController" 
+        settings:searchable="false" />
+
+    <com.google.android.settings.aware.SilenceGestureDialogPreference 
+        android:title="@string/gesture_silence_title" 
+        android:key="gesture_silence_summary" 
+        settings:controller="com.google.android.settings.aware.SilenceDialogGesturePreferenceController" 
+        settings:searchable="false" />
+</PreferenceCategory>
+
+<PreferenceCategory 
+    android:title="@string/other_gestures_category_title" 
+    android:key="other_gestures" 
+    settings:controller="com.google.android.settings.aware.AwareGesturesCategoryPreferenceController" />
+
     <Preference
         android:fragment="com.google.android.settings.gestures.columbus.ColumbusSettings"
         android:key="columbus_input_summary"
@@ -23,6 +53,12 @@
         android:title="@string/double_tap_power_for_camera_title"
         settings:controller="com.android.settings.gestures.DoubleTapPowerPreferenceController"
         settings:searchable="false" />
+
+ <Preference
+        android:key="dtts_gesture_summary"
+        android:title="@string/dtts_gesture_title"
+        android:summary="@string/dtts_gesture_summary"
+        android:fragment="com.android.settings.gestures.DoubleTapSleepSettings" />
 
     <Preference
         android:fragment="com.android.settings.gestures.DoubleTwistGestureSettings"
@@ -71,6 +107,12 @@
         settings:controller="com.android.settings.gestures.SwipeToScreenshotPreferenceController" />
 
     <Preference
+        android:key="volume_button_music_control_sumary"
+        android:title="@string/volume_button_music_control_title"
+        android:fragment="com.android.settings.gestures.VolumeButtonMusicControlGestureSettings"
+        settings:controller="com.android.settings.gestures.VolumeButtonMusicControlPreferenceController" />
+
+    <Preference
         android:key="power_button_torch_summary"
         android:title="@string/power_button_torch_title"
         android:fragment="com.android.settings.gestures.PowerButtonTorchSettings"
@@ -82,23 +124,4 @@
         android:title="@string/gesture_prevent_ringing_screen_title"
         settings:controller="com.android.settings.gestures.PreventRingingParentPreferenceController" />
 
-    <com.android.settings.custom.preference.RemotePreference
-            android:key="touchscreen_gesture_settings"
-            android:title="@string/touchscreen_gesture_settings_title"
-            android:summary="@string/touchscreen_gesture_settings_summary"
-            settings:requiresFeature="lineagehardware:FEATURE_TOUCHSCREEN_GESTURES">
-        <intent
-            android:action="android.intent.action.MAIN"
-            android:targetPackage="com.android.touch.gestures"
-            android:targetClass="com.android.touch.gestures.TouchscreenGestureSettings" />
-   </com.android.settings.custom.preference.RemotePreference>
-
-    <com.android.settings.custom.preference.RemotePreference
-            android:key="device_touchscreen_gesture_settings"
-            android:title="@string/touchscreen_gesture_settings_title"
-            android:summary="@string/touchscreen_gesture_settings_summary"
-            settings:replacesKey="touchscreen_gesture_settings"
-            settings:requiresAction="org.lineageos.settings.device.GESTURE_SETTINGS">
-        <intent android:action="org.lineageos.settings.device.GESTURE_SETTINGS" />
-    </com.android.settings.custom.preference.RemotePreference>
 </PreferenceScreen>
