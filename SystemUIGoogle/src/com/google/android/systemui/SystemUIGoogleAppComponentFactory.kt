@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 The PixelExperience Project
+ * Copyright (C) 2024 TheParasiteProject
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,11 @@
  * limitations under the License.
  */
 
-package com.google.android.systemui.dreamliner.dagger;
+package com.google.android.systemui
 
-import com.google.android.systemui.dreamliner.WirelessCharger;
-import com.google.android.systemui.dreamliner.WirelessChargerImpl;
+import android.content.Context
+import com.android.systemui.SystemUIAppComponentFactoryBase
 
-import dagger.Binds;
-import dagger.Module;
-
-@Module
-public abstract class DreamlinerModule {
-    @Binds
-    abstract WirelessCharger bindWirelessCharger(
-            WirelessChargerImpl wirelessCharger);
+public class SystemUIGoogleAppComponentFactory : SystemUIAppComponentFactoryBase() {
+    override fun createSystemUIInitializer(context: Context) = SystemUIGoogleInitializer(context)
 }
