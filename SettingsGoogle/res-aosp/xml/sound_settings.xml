@@ -11,7 +11,8 @@
         android:order="-185"
         android:title=""
         settings:allowDividerBelow="true"
-        settings:controller="com.android.settings.notification.RemoteVolumeGroupController" />
+        settings:controller="com.android.settings.notification.RemoteVolumeGroupController">
+    </PreferenceCategory>
 
     <com.android.settings.notification.VolumeSeekBarPreference
         android:icon="@drawable/ic_media_stream"
@@ -232,7 +233,7 @@
     <SwitchPreferenceCompat
         android:key="charging_sounds"
         android:order="-40"
-        android:title="@string/charging_sounds_custom_title" />
+        android:title="@string/charging_sounds_title" />
 
     <SwitchPreferenceCompat
         android:key="docking_sounds"
@@ -268,6 +269,6 @@
             android:key="vibrate_on_disconnect"
             android:title="@string/incall_vibrate_disconnect_title"
             android:defaultValue="false" />
-    </PreferenceCategory
+    </PreferenceCategory>
 
 </PreferenceScreen>
