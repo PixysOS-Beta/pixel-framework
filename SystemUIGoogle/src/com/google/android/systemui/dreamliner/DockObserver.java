@@ -62,7 +62,6 @@ import com.android.systemui.statusbar.policy.ConfigurationController;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.util.concurrency.DelayableExecutor;
 import com.google.android.systemui.dreamliner.WirelessCharger;
-import com.google.android.systemui.elmyra.gates.KeyguardVisibility;
 
 import dagger.Lazy;
 

@@ -52,8 +52,6 @@ import com.android.systemui.navigationbar.buttons.KeyButtonDrawable;
 import com.android.systemui.navigationbar.buttons.KeyButtonView;
 import com.android.systemui.recents.OverviewProxyService;
 import com.android.systemui.shared.system.QuickStepContract;
-import com.google.android.systemui.elmyra.feedback.FeedbackEffect;
-import com.google.android.systemui.elmyra.sensors.GestureSensor;
 
 import java.util.ArrayList;
 
@@ -722,17 +720,6 @@ public class OpaLayout extends FrameLayout implements ButtonInterface, FeedbackE
     public void setDelayTouchFeedback(boolean z) {
         mHome.setDelayTouchFeedback(z);
         mDelayTouchFeedback = z;
-    }
-
-    @Override
-    public void onRelease() {
-        if (mAnimationState == 0 && mGestureState == 1) {
-            if (mGestureAnimatorSet != null) {
-                mGestureAnimatorSet.cancel();
-            }
-            mGestureState = 0;
-            startRetractAnimation();
-        }
     }
 
     @Override

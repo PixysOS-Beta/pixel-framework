@@ -31,8 +31,6 @@ import android.widget.FrameLayout;
 
 import com.android.systemui.res.R;
 import com.android.app.animation.Interpolators;
-import com.google.android.systemui.elmyra.feedback.FeedbackEffect;
-import com.google.android.systemui.elmyra.sensors.GestureSensor;
 
 import java.util.ArrayList;
 
@@ -196,30 +194,6 @@ public class LockscreenOpaLayout extends FrameLayout implements FeedbackEffect {
             View view = mAnimatedViews.get(i);
             view.setAlpha(0.0f);
             view.setTranslationX(0.0f);
-        }
-    }
-
-    @Override
-    public void onRelease() {
-        if (mGestureState == 2 || mGestureState == 4) {
-            return;
-        }
-        if (mGestureState != 3) {
-            if (mGestureState != 1) {
-                return;
-            }
-            startRetractAnimation();
-        } else if (mGestureAnimatorSet.isRunning()) {
-            mGestureAnimatorSet.removeAllListeners();
-            mGestureAnimatorSet.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    startRetractAnimation();
-                }
-            });
-        } else {
-            mGestureState = 4;
-            startRetractAnimation();
         }
     }
 
