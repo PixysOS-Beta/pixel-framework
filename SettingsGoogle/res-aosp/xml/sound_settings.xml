@@ -207,13 +207,6 @@
         android:title="@string/sound_work_settings"
         settings:controller="com.android.settings.notification.WorkSoundsPreferenceController" />
 
-    <com.android.settings.custom.preference.SystemSettingSwitchPreference
-        android:key="show_app_volume"
-        android:title="@string/app_volume_title"
-        android:summary="@string/app_volume_summary"
-        android:defaultValue="false"
-        android:order="-5"/>
-
     <SwitchPreferenceCompat
         android:key="dial_pad_tones"
         android:order="-50"
