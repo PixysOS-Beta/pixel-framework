@@ -56,7 +56,7 @@ import com.android.systemui.shared.system.QuickStepContract;
 import java.util.ArrayList;
 
 
-public class OpaLayout extends FrameLayout implements ButtonInterface, FeedbackEffect {
+public class OpaLayout extends FrameLayout implements ButtonInterface {
     private final Interpolator HOME_DISAPPEAR_INTERPOLATOR;
     private final ArrayList<View> mAnimatedViews;
     private final ArraySet<Animator> mCurrentAnimators;
@@ -720,42 +720,6 @@ public class OpaLayout extends FrameLayout implements ButtonInterface, FeedbackE
     public void setDelayTouchFeedback(boolean z) {
         mHome.setDelayTouchFeedback(z);
         mDelayTouchFeedback = z;
-    }
-
-    @Override
-    public void onProgress(float f, int i) {
-        if (mGestureState == 2 || !allowAnimations()) {
-            return;
-        }
-        if (mAnimationState == 2) {
-            endCurrentAnimation("progress=" + f);
-        }
-        if (mAnimationState != 0) {
-            return;
-        }
-        if (mGestureAnimatorSet == null) {
-            mGestureAnimatorSet = getGestureAnimatorSet();
-            mGestureAnimationSetDuration = mGestureAnimatorSet.getTotalDuration();
-        }
-        mGestureAnimatorSet.setCurrentPlayTime((long) (((float) (mGestureAnimationSetDuration - 1)) * f));
-        if (f == 0.0f) {
-            mGestureState = 0;
-        } else {
-            mGestureState = 1;
-        }
-    }
-
-    @Override
-    public void onResolve(GestureSensor.DetectionProperties detectionProperties) {
-        if (mAnimationState != 0) {
-            return;
-        }
-        if (mGestureState == 1 && mGestureAnimatorSet != null && !mGestureAnimatorSet.isStarted()) {
-            mGestureAnimatorSet.start();
-            mGestureState = 2;
-            return;
-        }
-        skipToStartingValue();
     }
 
     private AnimatorSet getGestureAnimatorSet() {

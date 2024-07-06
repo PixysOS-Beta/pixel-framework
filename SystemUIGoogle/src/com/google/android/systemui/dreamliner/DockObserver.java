@@ -494,7 +494,7 @@ public class DockObserver extends DockManagerImpl {
             intent.putExtra("type", i);
             intent.putExtra("orientation", i2);
             intent.putExtra("id", i3);
-            intent.putExtra("occluded", new KeyguardVisibility(context).isKeyguardOccluded());
+            intent.putExtra("occluded", false);
             try {
                 DreamlinerServiceConn dreamlinerServiceConn = new DreamlinerServiceConn(context);
                 mDreamlinerServiceConn = dreamlinerServiceConn;

@@ -34,7 +34,7 @@ import com.android.app.animation.Interpolators;
 
 import java.util.ArrayList;
 
-public class LockscreenOpaLayout extends FrameLayout implements FeedbackEffect {
+public class LockscreenOpaLayout extends FrameLayout {
     private final Interpolator INTERPOLATOR_5_100;
     private final int RED_YELLOW_START_DELAY;
     private final ArrayList<View> mAnimatedViews;
@@ -195,75 +195,6 @@ public class LockscreenOpaLayout extends FrameLayout implements FeedbackEffect {
             view.setAlpha(0.0f);
             view.setTranslationX(0.0f);
         }
-    }
-
-    @Override
-    public void onProgress(float f, int i) {
-        if (mGestureState == 2) {
-            return;
-        }
-        if (mGestureState == 4) {
-            endCurrentAnimation();
-        }
-        if (f == 0.0f) {
-            mGestureState = 0;
-            return;
-        }
-        long max = (long) Math.max(0L, (f * 533.0f) - 167);
-        int i3 = mGestureState;
-        if (i3 == 0) {
-            startCannedAnimation();
-        } else if (i3 == 1) {
-            mGestureAnimatorSet.setCurrentPlayTime(max);
-        } else if (i3 != 3 || max < 167) {
-        } else {
-            mGestureAnimatorSet.end();
-            if (mGestureState != 1) {
-                return;
-            }
-            mGestureAnimatorSet.setCurrentPlayTime(max);
-        }
-    }
-
-    @Override
-    public void onResolve(GestureSensor.DetectionProperties detectionProperties) {
-        if (mGestureState == 4 || mGestureState == 2) {
-            return;
-        }
-        if (mGestureState == 3) {
-            mGestureState = 2;
-            mGestureAnimatorSet.removeAllListeners();
-            mGestureAnimatorSet.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    mGestureAnimatorSet = getLineAnimatorSet();
-                    mGestureAnimatorSet.removeAllListeners();
-                    mGestureAnimatorSet.addListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animator2) {
-                            startCollapseAnimation();
-                        }
-                    });
-                    mGestureAnimatorSet.end();
-                }
-            });
-            return;
-        }
-        if (mGestureAnimatorSet == null) {
-            return;
-        }
-        mGestureState = 2;
-        mGestureAnimatorSet.removeAllListeners();
-        mGestureAnimatorSet.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                startCollapseAnimation();
-            }
-        });
-        if (mGestureAnimatorSet.isStarted()) {
-            return;
-        }
-        mGestureAnimatorSet.start();
     }
 
     private AnimatorSet getCannedAnimatorSet() {
