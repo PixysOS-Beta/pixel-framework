@@ -247,7 +247,7 @@
 
     <SwitchPreferenceCompat
         android:key="vibrate_icon"
-        android:order="-999"
+        android:order="-27"
         android:title="@string/vibrate_icon_title" />
 
    <!-- Incall vibration options -->

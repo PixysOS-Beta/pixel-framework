@@ -89,6 +89,13 @@
         settings:searchable="false" />
 
     <Preference
+        android:key="gesture_screen_off_udfps_input_summary"
+        android:title="@string/ambient_display_screen_off_udfps_title"
+        android:fragment="com.android.settings.gestures.ScreenOffUdfpsSettings"
+        settings:searchable="false"
+        settings:controller="com.android.settings.gestures.ScreenOffUdfpsPreferenceController" />
+
+    <Preference
         android:fragment="com.android.settings.gestures.OneHandedSettings"
         android:key="gesture_one_handed_mode"
         android:title="@string/one_handed_title"
